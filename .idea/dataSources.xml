@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="mask_db@192.168.1.7" uuid="3db56708-1beb-455c-9ce0-8c7a80b081b3">
+    <data-source source="LOCAL" name="mask_db" uuid="0e227919-d780-4d93-9b9a-6b4c05f2905c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://192.168.1.7:5432/mask_db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="maskdb@localhost" uuid="e1527b36-fd1e-48ef-99c5-b5ba8bbcd7ae">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/maskdb</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
     </data-source>
   </component>
 </project>
