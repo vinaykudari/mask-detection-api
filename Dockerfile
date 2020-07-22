@@ -34,7 +34,7 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY . $APP_ROOT
 
-EXPOSE 9000
+EXPOSE 8000
 
 CMD ["./docker/entrypoint.sh"]
 

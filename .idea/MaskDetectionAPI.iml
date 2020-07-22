@@ -14,7 +14,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Remote Python 3.8.4 Docker Compose (api at [/Users/vinaykudari/Desktop/MaskDetectionAPI/docker-compose.local.yml])" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (MaskDetectionAPI)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

@@ -25,7 +25,7 @@ SECRET_KEY = 'n-re&be(pq$!neq6bvit5z&wz^oh^ovztcl=1dwgtelx*8dj0-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'mask_detection.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "mask_db",
+        "NAME": "maskdb",
         "USER": "admin",
         "PASSWORD": "admin",
-        "HOST": "db",
+        "HOST": "localhost",
         "PORT": "5432",
     }
 }
