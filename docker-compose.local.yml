@@ -16,13 +16,13 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
     build: .
-    command: ./mask_detection/manage.py runserver 0.0.0.0:8000
+    command: ./mask_detection/manage.py runserver 0.0.0.0:9000
     links:
       - db:db
     volumes:
       - .:/code:z
     ports:
-      - 8000:8000
+      - 9000:9000
     depends_on:
       - db
 

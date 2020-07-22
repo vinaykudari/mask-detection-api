@@ -22,6 +22,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     sqlite3 \
     postgresql-client \
+    python-psycopg2 \
     && \
     apt-get clean
 
@@ -33,7 +34,7 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY . $APP_ROOT
 
-EXPOSE 8000
+EXPOSE 9000
 
 CMD ["./docker/entrypoint.sh"]
 
