@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
-from api.views import Predict
+from .views import MaskDetector
 app_name = 'api'
 
 
 urlpatterns = [
-    url(r'predict/$', Predict.as_view(), name="predict"),
+    url(r'predict/', MaskDetector.as_view(), name="predict"),
 ]
