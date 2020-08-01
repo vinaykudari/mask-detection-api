@@ -6,7 +6,6 @@ from .predictor import analyse
 
 class MaskDetectionAPI(APIView):
 	def get(self, request):
-		print(request.FILES)
 		image = request.FILES['image']
 		is_mask_detected, image_details = analyse(image)
 
