@@ -1,14 +1,20 @@
+import uuid
+
 from django.db import models
 
-# Create your models here.
+
+def randomize_filename(self, filename):
+	extension = filename.split(".")[-1]
+	new_filename = f'{uuid.uuid4()}.{extension}'
+	return f'images/{new_filename}'
 
 
 class Image(models.Model):
 	id = models.AutoField(primary_key=True)
 	image = models.ImageField(
-		upload_to='images/',
+		upload_to=randomize_filename,
 		blank=False,
-		null=True
+		null=False,
 	)
 	created = models.DateTimeField(auto_now_add=True)
 
@@ -27,6 +33,7 @@ class PredictedImageDetails(models.Model):
 		blank=False,
 		null=False
 	)
+	created = models.DateTimeField(auto_now_add=True)
 
 
 class ActualImageDetails(models.Model):
@@ -43,3 +50,4 @@ class ActualImageDetails(models.Model):
 		blank=True,
 		null=False
 	)
+	created = models.DateTimeField(auto_now_add=True)
