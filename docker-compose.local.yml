@@ -20,7 +20,7 @@ services:
     links:
       - db:db
     volumes:
-      - .:/code:z
+      - .:/code
     ports:
       - 8000:8000
     depends_on:

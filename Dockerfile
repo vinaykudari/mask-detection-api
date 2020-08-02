@@ -20,7 +20,6 @@ RUN useradd -d $APP_ROOT -r $APP_USER
 # Install system dependencies
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-    sqlite3 \
     postgresql-client \
     python-psycopg2 \
     && \
@@ -34,7 +33,9 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY . $APP_ROOT
 
-EXPOSE 8000
+RUN chown -R $APP_USER:$APP_USER $APP_ROOT
 
-CMD ["./docker/entrypoint.sh"]
+USER $APP_USER
+
+ENTRYPOINT ["./docker/entrypoint.sh"]
 

@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:10-alpine
+    env_file:
+      - config/db/database_env
+    networks:
+      - db_network
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+
+  api:
+    restart: unless-stopped
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=admin
+    build: .
+    links:
+      - db:db
+    volumes:
+      - .:/code
+    networks:
+      - nginx_network
+      - db_network
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - nginx_network
+    depends_on:
+      - api
+
+networks:
+  nginx_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+
+volumes:
+  db_volume:
