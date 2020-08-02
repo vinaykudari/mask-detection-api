@@ -1,18 +1,28 @@
 import json
+import os
 from pathlib import Path
 
 import cv2
 import numpy as np
 from PIL import Image as PILImage
+from django.conf.global_settings import MEDIA_ROOT
 from fastai.vision import load_learner, Image
 from numpy import asarray
 from torchvision.transforms import Compose, ToPILImage, Resize, ToTensor
 
-from mask_detection.settings import MEDIA_ROOT
 
-MASK_DETECTION_MODEL_PATH = '/home/vinaykudari/MaskDetectionAPI/uploads/models/mask-detection/'
-FACE_DETECTION_ARCH_PATH = '/home/vinaykudari/MaskDetectionAPI/uploads/models/face-detection/yolov3-face.cfg'
-FACE_DETECTION_MODEL_PATH = '/home/vinaykudari/MaskDetectionAPI/uploads/models/face-detection/yolov3-face.weights'
+MASK_DETECTION_MODEL_PATH = os.path.join(
+    MEDIA_ROOT,
+    'uploads/models/mask-detection/'
+)
+FACE_DETECTION_ARCH_PATH = os.path.join(
+    MEDIA_ROOT,
+    'uploads/models/face-detection/yolov3-face.cfg'
+)
+FACE_DETECTION_MODEL_PATH = os.path.join(
+    MEDIA_ROOT,
+    'uploads/models/face-detection/yolov3-face.weights'
+)
 RES = 224
 FACE_DETECTION_CONFIDENCE = 0.5
 FACE_DETECTION_THRESHOLD = 0.4
