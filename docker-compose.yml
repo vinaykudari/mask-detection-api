@@ -4,8 +4,8 @@ services:
   db:
     image: postgres:10-alpine
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
@@ -20,11 +20,12 @@ services:
     environment:
       - DB_HOST=db
       - DB_PORT=5432
+      - DB_NAME=postgres
     build: .
     links:
       - db:db
     volumes:
-      - .:/code
+      - .:/code:z
     networks:
       - nginx_network
       - db_network
@@ -34,7 +35,7 @@ services:
   nginx:
     image: nginx:1.13
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
     networks:

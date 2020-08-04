@@ -38,5 +38,7 @@ RUN chown -R $APP_USER:$APP_USER $APP_ROOT
 # Set working directory
 WORKDIR $APP_ROOT/mask_detection
 
+USER $APP_USER
+
 ENTRYPOINT ["../docker/entrypoint.sh"]
 

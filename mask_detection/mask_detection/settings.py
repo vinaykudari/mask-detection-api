@@ -80,14 +80,13 @@ WSGI_APPLICATION = 'mask_detection.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "maskdb",
+        "NAME": os.environ.get('DB_NAME', 'maskdb'),
         "USER": "admin",
         "PASSWORD": "admin",
-        "HOST": "localhost",
+        "HOST": os.environ.get('DB_HOST', 'localhost'),
         "PORT": "5432",
     }
 }
-
 
 
 # Password validation
