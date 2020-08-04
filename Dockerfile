@@ -35,7 +35,8 @@ COPY . $APP_ROOT
 
 RUN chown -R $APP_USER:$APP_USER $APP_ROOT
 
-USER $APP_USER
+# Set working directory
+WORKDIR $APP_ROOT/mask_detection
 
-ENTRYPOINT ["./docker/entrypoint.sh"]
+ENTRYPOINT ["../docker/entrypoint.sh"]
 

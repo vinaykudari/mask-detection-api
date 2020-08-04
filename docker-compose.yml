@@ -3,8 +3,11 @@ version: '3.7'
 services:
   db:
     image: postgres:10-alpine
-    env_file:
-      - config/db/database_env
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
       - db_network
     ports:
@@ -17,7 +20,6 @@ services:
     environment:
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_USER=admin
     build: .
     links:
       - db:db

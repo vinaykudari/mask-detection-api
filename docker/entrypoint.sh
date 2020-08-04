@@ -8,7 +8,7 @@ while ! pg_isready -h $DB_HOST -p $DB_PORT 2>/dev/null; do
 done
 
 echo "Migrating database ..."
-python3 mask_detection/manage.py migrate --no-input
+python3 manage.py migrate --no-input
 
 exec \
     gunicorn mask_detection.wsgi:application \
