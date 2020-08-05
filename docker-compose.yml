@@ -17,7 +17,7 @@ services:
       - db_volume:/var/lib/postgresql/data
 
   api:
-    restart: unless-stopped
+    restart: always
     environment:
       - DB_HOST=db
       - DB_PORT=5432
