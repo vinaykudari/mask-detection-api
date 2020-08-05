@@ -50,7 +50,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-
+*.icloud
 # Translations
 *.mo
 *.pot
@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/uploads/images/

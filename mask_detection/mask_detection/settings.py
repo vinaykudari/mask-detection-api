@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from api.predictor import get_mask_detection_learner, get_face_detection_model
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -27,6 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Models
+
+MASK_DETECTION_LEARNER = get_mask_detection_learner()
+FACE_DETECTION_MODEL = get_face_detection_model()
 
 # Application definition
 
@@ -80,14 +86,13 @@ WSGI_APPLICATION = 'mask_detection.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "maskdb",
+        "NAME": os.environ.get('DB_NAME', 'maskdb'),
         "USER": "admin",
         "PASSWORD": "admin",
-        "HOST": "localhost",
+        "HOST": os.environ.get('DB_HOST', 'localhost'),
         "PORT": "5432",
     }
 }
-
 
 
 # Password validation
@@ -127,5 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
