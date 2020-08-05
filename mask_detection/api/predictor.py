@@ -8,6 +8,7 @@ from fastai.vision import load_learner, Image
 from numpy import asarray
 from torchvision.transforms import Compose, ToPILImage, Resize, ToTensor
 
+from django.conf import settings
 
 MASK_DETECTION_MODEL_PATH = os.path.join(
     MEDIA_ROOT,
@@ -59,7 +60,7 @@ def get_faces_from(image):
     face_coordinates, confidence, face_details = [], [], []
     height, width = img_mat.shape[:2]
 
-    face_detection_model = get_face_detection_model()
+    face_detection_model = settings.FACE_DETECTION_MODEL
     blob = cv2.dnn.blobFromImage(
         img_mat,
         1 / 255.,
@@ -110,7 +111,7 @@ def get_faces_from(image):
 def is_wearing_mask(face, image):
     x, y, w, h = face
     height, width = image.shape[:2]
-    mask_detection_learner = get_mask_detection_learner()
+    mask_detection_learner = settings.MASK_DETECTION_LEARNER
     x1, y1 = max(x-20, 0), max(y-20, 0)
     x2, y2 = min(x+w+20, width), min(y+h+20, height)
     face_with_padding = image[y1:y2, x1:x2]

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from api.predictor import get_mask_detection_learner, get_face_detection_model
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -27,6 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Models
+
+MASK_DETECTION_LEARNER = get_mask_detection_learner()
+FACE_DETECTION_MODEL = get_face_detection_model()
 
 # Application definition
 
