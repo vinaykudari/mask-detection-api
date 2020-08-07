@@ -19,9 +19,7 @@ services:
   api:
     restart: always
     environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=postgres
+      - DATABASE_URL=postgres://admin:admin@db:5432/postgres
     build: .
     links:
       - db:db
