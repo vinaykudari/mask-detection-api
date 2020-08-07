@@ -1,0 +1,9 @@
+build:
+  docker:
+    web: Dockerfile
+release:
+  command:
+    - ./manage.py migrate
+  image: web
+run:
+  web: gunicorn mask_detection.wsgi --log-file -

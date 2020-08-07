@@ -9,7 +9,8 @@ ENV APP_USER=admin \
     DJANGO_APP_ROOT=/code/mask_detection \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE="mask_detection.prod.settings"
 
 # Set working directory
 WORKDIR $APP_ROOT
@@ -40,5 +41,5 @@ WORKDIR $APP_ROOT/mask_detection
 
 #USER $APP_USER
 
-ENTRYPOINT ["../docker/entrypoint.sh"]
+#ENTRYPOINT ["../docker/entrypoint.sh"]
 
