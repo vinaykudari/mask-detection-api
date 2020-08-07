@@ -10,7 +10,7 @@ ENV APP_USER=admin \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE="mask_detection.prod.settings"
+    DJANGO_SETTINGS_MODULE="mask_detection.mask_detection.prod.settings"
 
 # Set working directory
 WORKDIR $APP_ROOT
