@@ -29,7 +29,7 @@ RUN apt-get update && \
 # Install dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt $APP_ROOT
-RUN pip install -r requirements.txt
+RUN pip install --default-timeout=100 -r requirements.txt
 
 # Copy project files
 COPY . $APP_ROOT

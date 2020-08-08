@@ -13,6 +13,8 @@ echo "Waiting for database ..."
 echo "Migrating database ..."
 python3 manage.py migrate --no-input
 
+ls
+ls uploads/face_detection
 tree .
 
 exec \
