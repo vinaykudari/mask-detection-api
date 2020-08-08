@@ -14,21 +14,31 @@ echo "Downloading Models"
 mkdir -p uploads/models/face-detection/
 mkdir -p uploads/models/mask-detection/
 
-echo "Downloading YoloV3 Architecture"
-wget -O uploads/models/face-detection/yolov3-face.cfg \
- https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
-ls -l uploads/models/face-detection/yolov3-face.cfg
+if [ ! -f uploads/models/face-detection/yolov3-face.cfg ]; then
+    echo "Downloading YoloV3 Architecture"
+    wget -O uploads/models/face-detection/yolov3-face.cfg \
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
+    ls -l uploads/models/face-detection/yolov3-face.cfg
+fi
 
-echo "Downloading YoloV3 Weights"
-wget -O uploads/models/face-detection/yolov3-face.weights \
-https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights
-ls -l uploads/models/face-detection/yolov3-face.weights
+if [ ! -f uploads/models/face-detection/yolov3-face.weights ]; then
+    echo "Downloading YoloV3 Weights"
+    wget -O uploads/models/face-detection/yolov3-face.weights \
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights
+    ls -l uploads/models/face-detection/yolov3-face.weights
+fi
 
-echo "Downloading Mask Detection Model Weights"
-wget -O uploads/models/mask-detection/export.pkl \
-https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+if [ ! -f uploads/models/mask-detection/export.pkl ]; then
+    echo "Downloading Mask Detection Model Weights"
+    wget -O uploads/models/mask-detection/export.pkl \
+    https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+    ls -l uploads/models/mask-detection/export.pkl
+fi
 
-ls -l uploads/models/mask-detection/export.pkl
+
+
+
+
 
 chmod a+rwx uploads/
 

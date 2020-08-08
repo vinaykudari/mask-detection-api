@@ -8,7 +8,7 @@ from .predictor import analyse
 
 
 class MaskDetectionAPI(APIView):
-	def get(self, request):
+	def post(self, request):
 		image = request.FILES.get('image')
 		if not image:
 			return JsonResponse(
@@ -38,5 +38,6 @@ class MaskDetectionAPI(APIView):
 			'mask_detected': is_mask_detected,
 			'image_details': image_details
 		}
+		print(response)
 		
 		return JsonResponse(response)
