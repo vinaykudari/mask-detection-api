@@ -26,7 +26,8 @@ ls -l uploads/models/face-detection/yolov3-face.weights
 
 echo "Downloading Mask Detection Model Weights"
 wget -O uploads/models/mask-detection/export.pkl \
-https://storage.googleapis.com/maskdetection-api-files/models/mask_detection/export.pkl
+https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+
 ls -l uploads/models/mask-detection/export.pkl
 
 chmod a+rwx uploads/
