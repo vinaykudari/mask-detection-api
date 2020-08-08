@@ -41,5 +41,14 @@ WORKDIR $APP_ROOT/mask_detection
 
 #USER $APP_USER
 
+RUN wget -O uploads/models/face-detection/yolov3-face.cfg \
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
+
+RUN wget -O uploads/models/face-detection/yolov3-face.weights \
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights
+
+RUN wget -O uploads/models/mask-detection/export.pkl \
+    https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+
 ENTRYPOINT ["../docker/entrypoint.sh"]
 
