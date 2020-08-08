@@ -5,9 +5,11 @@ set -e
 echo "Database URL"
 echo $DATABASE_URL
 
-ls
-ls uploads/face_detection
 tree .
+ls
+ls uploads/models/face-detection
+ls uploads/models/mask-detection
+
 
 echo "Waiting for database ..."
 #while ! pg_isready -h $DB_HOST -p $DB_PORT 2>/dev/null; do
