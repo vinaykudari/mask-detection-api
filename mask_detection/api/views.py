@@ -8,6 +8,13 @@ from .predictor import analyse
 
 
 class MaskDetectionAPI(APIView):
+	def get(self, request):
+		response = {
+			"error": "Method GET does not exists"
+		}
+		
+		return JsonResponse(response)
+	
 	def post(self, request):
 		image = request.FILES.get('image')
 		if not image:
