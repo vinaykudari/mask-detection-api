@@ -10,6 +10,9 @@ echo "Waiting for database ..."
 #    sleep 1
 #done
 
+echo "Downloading Models"
+gsutil -m cp -r gs://maskdetection-api-files/models/ .
+
 echo "Migrating database ..."
 python3 manage.py migrate --no-input
 
