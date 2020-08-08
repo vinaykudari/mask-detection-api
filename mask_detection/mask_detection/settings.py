@@ -26,11 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
-# SECRET_KEY = 'n-re&be(pq$!neq6bvit5z&wz^oh^ovztcl=1dwgtelx*8dj0-'
+SECRET_KEY = env.str('SECRET_KEY', 'n-re&be(pq$!neq6bvit5z&wz^oh^ovztcl=1dwgtelx*8dj0-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG')
+DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,16 +92,6 @@ DATABASES = {
         default=env.str('DATABASE_URL')
     )
 }
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": os.environ.get('DB_NAME', 'maskdb'),
-#         "USER": "admin",
-#         "PASSWORD": "admin",
-#         "HOST": os.environ.get('DB_HOST', 'localhost'),
-#         "PORT": "5432",
-#     }
-# }
 
 
 # Password validation

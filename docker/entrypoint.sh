@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Database URL"
+echo $DATABASE_URL
+
 echo "Waiting for database ..."
 while ! pg_isready -h $DB_HOST -p $DB_PORT 2>/dev/null; do
     sleep 1
