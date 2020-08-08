@@ -21,7 +21,6 @@ RUN useradd -d $APP_ROOT -r $APP_USER
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     postgresql-client \
-    gsutil \
     python-psycopg2 \
     && \
     apt-get clean

@@ -11,7 +11,15 @@ echo "Waiting for database ..."
 #done
 
 echo "Downloading Models"
-gsutil -m cp -r gs://maskdetection-api-files/models/ .
+mkdir -p uploads/models/face-detection/
+mkdir -p uploads/models/mask-detection/
+
+curl -O\
+ https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg > uploads/models/face-detection/yolov3-face.cfg
+curl -O \
+https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights > uploads/models/face-detection/yolov3-face.cfg
+curl -O \
+https://storage.googleapis.com/maskdetection-api-files/models/mask_detection/export.pkl > uploads/models/mask-detection/export.pkl
 
 echo "Migrating database ..."
 python3 manage.py migrate --no-input
