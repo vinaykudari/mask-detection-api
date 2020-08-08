@@ -4,4 +4,5 @@ build:
 release:
   image: web
   command:
+    - ls
     -  ./manage.py migrate
