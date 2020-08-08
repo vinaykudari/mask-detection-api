@@ -21,6 +21,7 @@ RUN useradd -d $APP_ROOT -r $APP_USER
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     postgresql-client \
+    tree \
     python-psycopg2 \
     && \
     apt-get clean
@@ -28,7 +29,7 @@ RUN apt-get update && \
 # Install dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt $APP_ROOT
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy project files
 COPY . $APP_ROOT

@@ -13,6 +13,8 @@ echo "Waiting for database ..."
 echo "Migrating database ..."
 python3 manage.py migrate --no-input
 
+tree .
+
 exec \
     gunicorn mask_detection.wsgi:application \
      --name=MaskDetectionAPI \
