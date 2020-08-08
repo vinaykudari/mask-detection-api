@@ -34,9 +34,9 @@ class MaskDetectionAPI(APIView):
 		# 	faces_with_masks=image_details['no_of_faces_with_mask']
 		# )
 		
-		return JsonResponse(
-			{
-				'mask_detected': is_mask_detected,
-				'image_details': image_details
-			}
-		)
+		response = {
+			'mask_detected': is_mask_detected,
+			'image_details': image_details
+		}
+		
+		return JsonResponse(response)
