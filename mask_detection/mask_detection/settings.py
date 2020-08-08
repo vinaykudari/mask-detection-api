@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
+from environ import Env
+
+env = Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from api.predictor import get_mask_detection_learner, get_face_detection_model
@@ -22,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n-re&be(pq$!neq6bvit5z&wz^oh^ovztcl=1dwgtelx*8dj0-'
+SECRET_KEY = env.str('SECRET_KEY', 'n-re&be(pq$!neq6bvit5z&wz^oh^ovztcl=1dwgtelx*8dj0-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,14 +88,9 @@ WSGI_APPLICATION = 'mask_detection.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get('DB_NAME', 'maskdb'),
-        "USER": "admin",
-        "PASSWORD": "admin",
-        "HOST": os.environ.get('DB_HOST', 'localhost'),
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(
+        default=env.str('DATABASE_URL')
+    )
 }
 
 

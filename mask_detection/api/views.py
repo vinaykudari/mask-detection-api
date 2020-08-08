@@ -9,6 +9,13 @@ from .predictor import analyse
 
 class MaskDetectionAPI(APIView):
 	def get(self, request):
+		response = {
+			"error": "Method GET does not exists"
+		}
+		
+		return JsonResponse(response)
+	
+	def post(self, request):
 		image = request.FILES.get('image')
 		if not image:
 			return JsonResponse(
@@ -34,9 +41,10 @@ class MaskDetectionAPI(APIView):
 		# 	faces_with_masks=image_details['no_of_faces_with_mask']
 		# )
 		
-		return JsonResponse(
-			{
-				'mask_detected': is_mask_detected,
-				'image_details': image_details
-			}
-		)
+		response = {
+			'mask_detected': is_mask_detected,
+			'image_details': image_details
+		}
+		print(response)
+		
+		return JsonResponse(response)
