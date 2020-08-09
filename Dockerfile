@@ -10,7 +10,7 @@ ENV APP_USER=admin \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DATABASE_URL=localhost \
+    DATABASE_URL=postgres://postgres:postgres@postgres/postgres \
     DEBUG=True \
     SECRET_KEY=local-secret-key
 
