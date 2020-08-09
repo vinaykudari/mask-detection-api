@@ -9,7 +9,10 @@ ENV APP_USER=admin \
     DJANGO_APP_ROOT=/code/mask_detection \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    DATABASE_URL=localhost \
+    DEBUG=True \
+    SECRET_KEY=local-secret-key
 
 # Set working directory
 WORKDIR $APP_ROOT
