@@ -17,7 +17,7 @@ from environ import Env
 env = Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from api.predictor import get_mask_detection_learner, get_face_detection_model
+from api.load_models import get_mask_detection_learner, get_face_detection_model
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
