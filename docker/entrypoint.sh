@@ -2,11 +2,6 @@
 
 set -e
 
-chmod a+rwx uploads/
-
-echo "Migrating database ..."
-python3 manage.py migrate --no-input
-
 exec \
     gunicorn mask_detection.wsgi:application \
      --name=MaskDetectionAPI \

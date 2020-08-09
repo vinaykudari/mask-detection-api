@@ -1,27 +1,14 @@
-import os
-
 import cv2
 import numpy as np
 from PIL import Image as PILImage
-from django.conf.global_settings import MEDIA_ROOT
-from fastai.vision import load_learner, Image
+
+from fastai.vision import Image
 from numpy import asarray
 from torchvision.transforms import Compose, ToPILImage, Resize, ToTensor
 
 from django.conf import settings
 
-MASK_DETECTION_MODEL_PATH = os.path.join(
-    MEDIA_ROOT,
-    'uploads/models/mask-detection/'
-)
-FACE_DETECTION_ARCH_PATH = os.path.join(
-    MEDIA_ROOT,
-    'uploads/models/face-detection/yolov3-face.cfg'
-)
-FACE_DETECTION_MODEL_PATH = os.path.join(
-    MEDIA_ROOT,
-    'uploads/models/face-detection/yolov3-face.weights'
-)
+
 RES = 224
 FACE_DETECTION_CONFIDENCE = 0.4
 FACE_DETECTION_THRESHOLD = 0.4
@@ -33,24 +20,8 @@ TRANSFORMATIONS = Compose([
     ToTensor(),
 ])
 
-
-def get_face_detection_model():
-    face_detection_model = cv2.dnn.readNetFromDarknet(
-        FACE_DETECTION_ARCH_PATH,
-        FACE_DETECTION_MODEL_PATH
-    )
-    face_detection_model.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
-    face_detection_model.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
-
-    return face_detection_model
-
-
-def get_mask_detection_learner():
-    learner = load_learner(
-        MASK_DETECTION_MODEL_PATH
-    )
-
-    return learner
+face_detection_model = settings.FACE_DETECTION_MODEL
+mask_detection_learner = settings.MASK_DETECTION_LEARNER
 
 
 def get_faces_from(image):
@@ -60,7 +31,6 @@ def get_faces_from(image):
     face_coordinates, confidence, face_details = [], [], []
     height, width = img_mat.shape[:2]
 
-    face_detection_model = settings.FACE_DETECTION_MODEL
     blob = cv2.dnn.blobFromImage(
         img_mat,
         1 / 255.,
@@ -111,7 +81,6 @@ def get_faces_from(image):
 def is_wearing_mask(face, image):
     x, y, w, h = face
     height, width = image.shape[:2]
-    mask_detection_learner = settings.MASK_DETECTION_LEARNER
     x1, y1 = max(x-20, 0), max(y-20, 0)
     x2, y2 = min(x+w+20, width), min(y+h+20, height)
     face_with_padding = image[y1:y2, x1:x2]

@@ -34,8 +34,6 @@ RUN pip install --default-timeout=100 -r requirements.txt
 # Copy project files
 COPY . $APP_ROOT
 
-RUN chown -R $APP_USER:$APP_USER $APP_ROOT
-
 # Set working directory
 WORKDIR $APP_ROOT/mask_detection
 
@@ -49,6 +47,10 @@ RUN wget -O uploads/models/face-detection/yolov3-face.weights \
 
 RUN wget -O uploads/models/mask-detection/export.pkl \
     https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+
+RUN python3 manage.py migrate --no-input
+
+RUN chown -R $APP_USER:$APP_USER $APP_ROOT
 
 ENTRYPOINT ["../docker/entrypoint.sh"]
 
