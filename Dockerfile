@@ -10,7 +10,7 @@ ENV APP_USER=admin \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DATABASE_URL=postgres://postgres:postgres@postgres/postgres \
+    DATABASE_URL=postgres://admin:aHFASDSl2KFf0K4adYQiav6XeKFgIiCY@oregon-postgres.render.com/maskdb \
     DEBUG=True \
     SECRET_KEY=local-secret-key
 
