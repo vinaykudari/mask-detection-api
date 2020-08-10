@@ -10,9 +10,9 @@ from django.conf import settings
 
 
 RES = 224
-FACE_DETECTION_CONFIDENCE = 0.6
-FACE_DETECTION_THRESHOLD = 0.2
-MASK_DETECTION_THRESHOLD = 0.95
+FACE_DETECTION_CONFIDENCE = 0
+FACE_DETECTION_THRESHOLD = 0
+MASK_DETECTION_THRESHOLD = 0.96
 
 TRANSFORMATIONS = Compose([
     ToPILImage(),
@@ -56,18 +56,18 @@ def get_faces_from(image):
             face_coordinates[:, 0] = face_coordinates[:, 0] - face_coordinates[:, 2] / 2
             face_coordinates[:, 1] = face_coordinates[:, 1] - face_coordinates[:, 3] / 2
             confidence = out[:, 5]
-    
+            
     if face_coordinates.any() and confidence.any():
         face_coordinates = face_coordinates.tolist()
         confidence = confidence.tolist()
 
-        indexes = cv2.dnn.NMSBoxes(
+        indexes = np.array(cv2.dnn.NMSBoxes(
             face_coordinates,
             confidence,
             FACE_DETECTION_CONFIDENCE,
             FACE_DETECTION_THRESHOLD
-        )
-
+        ))
+    
     if indexes.any():
         for i in indexes.flatten():
             face_details.append(
