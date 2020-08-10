@@ -45,6 +45,5 @@ class MaskDetectionAPI(APIView):
 			'mask_detected': is_mask_detected,
 			'image_details': image_details
 		}
-		print(response)
 		
 		return JsonResponse(response)

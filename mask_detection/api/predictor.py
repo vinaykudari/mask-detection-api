@@ -10,9 +10,9 @@ from django.conf import settings
 
 
 RES = 224
-FACE_DETECTION_CONFIDENCE = 0.4
+FACE_DETECTION_CONFIDENCE = 0.6
 FACE_DETECTION_THRESHOLD = 0.4
-MASK_DETECTION_THRESHOLD = 0.9
+MASK_DETECTION_THRESHOLD = 0.95
 
 TRANSFORMATIONS = Compose([
     ToPILImage(),
@@ -28,7 +28,8 @@ def get_faces_from(image):
     img = PILImage.open(image)
     img_RGB = img.convert('RGB')
     img_mat = asarray(img_RGB)
-    face_coordinates, confidence, face_details = [], [], []
+    face_details = []
+    face_coordinates, confidence, indexes = np.array([]),  np.array([]), np.array([])
     height, width = img_mat.shape[:2]
 
     blob = cv2.dnn.blobFromImage(
@@ -55,16 +56,17 @@ def get_faces_from(image):
             face_coordinates[:, 0] = face_coordinates[:, 0] - face_coordinates[:, 2] / 2
             face_coordinates[:, 1] = face_coordinates[:, 1] - face_coordinates[:, 3] / 2
             confidence = out[:, 5]
+    
+    if face_coordinates.any() and confidence.any():
+        face_coordinates = face_coordinates.tolist()
+        confidence = confidence.tolist()
 
-    face_coordinates = face_coordinates.tolist()
-    confidence = confidence.tolist()
-
-    indexes = cv2.dnn.NMSBoxes(
-        face_coordinates,
-        confidence,
-        FACE_DETECTION_CONFIDENCE,
-        FACE_DETECTION_THRESHOLD
-    )
+        indexes = cv2.dnn.NMSBoxes(
+            face_coordinates,
+            confidence,
+            FACE_DETECTION_CONFIDENCE,
+            FACE_DETECTION_THRESHOLD
+        )
 
     if indexes.any():
         for i in indexes.flatten():
