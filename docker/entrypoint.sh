@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+echo "V1.0.1"
 
 exec \
     gunicorn mask_detection.wsgi:application \
