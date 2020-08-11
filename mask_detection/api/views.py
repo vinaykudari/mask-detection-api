@@ -34,7 +34,6 @@ class MaskDetectionAPI(APIView):
 			)
 		
 		image_obj = Image.objects.create(image=image)
-		print(image_obj)
 		is_mask_detected, image_details = analyse(image)
 		PredictedImageDetails.objects.create(
 			image=image_obj,
