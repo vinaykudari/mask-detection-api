@@ -139,7 +139,7 @@ MEDIA_ROOT = env.str('MEDIA_ROOT', os.path.join(BASE_DIR, 'uploads'))
 
 DEFAULT_FILE_STORAGE = env.str(
     'DEFAULT_FILE_STORAGE',
-    'config.storage_backend.GoogleCloudMediaFileStorage'
+    'django.core.files.storage.FileSystemStorage'
 )
 
 GS_PROJECT_ID = env.str('GS_PROJECT_ID', None)
