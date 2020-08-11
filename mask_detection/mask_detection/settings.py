@@ -139,7 +139,7 @@ MEDIA_ROOT = env.str('MEDIA_ROOT', os.path.join(BASE_DIR, 'uploads'))
 
 DEFAULT_FILE_STORAGE = env.str('DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
 
-GS_PROJECT_ID = env.str('GS_PROJECT_ID')
+GS_PROJECT_ID = env.str('GS_PROJECT_ID', None)
 GS_MEDIA_BUCKET_NAME = env.str('GS_MEDIA_BUCKET_NAME', None)
 
 if GS_MEDIA_BUCKET_NAME:
