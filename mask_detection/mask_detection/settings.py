@@ -135,5 +135,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = env.str('MEDIA_ROOT', os.path.join(BASE_DIR, 'uploads'))
+
+DEFAULT_FILE_STORAGE = env.str('DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
+
+GS_PROJECT_ID = env.str('GS_PROJECT_ID')
+GS_MEDIA_BUCKET_NAME = env.str('GS_MEDIA_BUCKET_NAME', None)
+
+if GS_MEDIA_BUCKET_NAME:
+    MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_MEDIA_BUCKET_NAME)
+else:
+    MEDIA_URL = '/media/'
