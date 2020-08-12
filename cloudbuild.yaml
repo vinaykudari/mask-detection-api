@@ -6,8 +6,10 @@
  # Push the container image to Container Registry
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'gcr.io/$PROJECT_ID/mask-detection-api:$COMMIT_SHA']
+   timeout: 900s
  # Deploy container image to Cloud Run
  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   timeout: 900s
    entrypoint: gcloud
    args:
    - 'run'
