@@ -14,7 +14,7 @@ class Image(models.Model):
 	image = models.ImageField(
 		upload_to=randomize_filename,
 		blank=False,
-		null=False,
+		null=True,
 	)
 	created = models.DateTimeField(auto_now_add=True)
 
