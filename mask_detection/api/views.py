@@ -85,8 +85,8 @@ class MaskDetectionAPI(APIView):
 		image_obj = Image.objects.create(image=image)
 		PredictedImageDetails.objects.create(
 			image=image_obj,
-			faces=image_details['no_of_faces'],
-			faces_with_masks=image_details['no_of_faces_with_mask']
+			faces=image_details['faces'],
+			faces_with_masks=image_details['faces_with_mask']
 		)
 		
 		response = {
