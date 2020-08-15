@@ -37,7 +37,6 @@ def get_faces_from(image):
 		img_mat,
 		1 / 255.,
 		(416, 416),
-		[0, 0, 0],
 		1,
 		crop=False
 	)
