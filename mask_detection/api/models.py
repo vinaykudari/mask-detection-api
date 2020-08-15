@@ -17,6 +17,26 @@ class Image(models.Model):
 		null=True,
 	)
 	created = models.DateTimeField(auto_now_add=True)
+	
+	
+class Feedback(models.Model):
+	FEEDBACK_CHOICES = (
+		("1", "Positive"),
+		("-1", "Negative"),
+	)
+	
+	id = models.AutoField(primary_key=True)
+	image = models.ForeignKey(
+		Image,
+		related_name='feedback',
+		on_delete=models.PROTECT
+	)
+	type = models.CharField(
+		max_length=10,
+		choices=FEEDBACK_CHOICES,
+		default="1"
+	)
+	created = models.DateTimeField(auto_now_add=True)
 
 
 class PredictedImageDetails(models.Model):
