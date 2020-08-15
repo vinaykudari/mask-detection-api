@@ -10,11 +10,16 @@ from .predictor import analyse
 
 class GetStats(APIView):
 	def get(self, request):
-		total_no_images = Image.objects.all().values('id').aggregate(Max('id'))
+		stats = PredictedImageDetails.objects.aggregate(**{
+			'total_no_faces': Sum('faces'),
+			'total_no_faces_with_masks': Sum('faces_with_masks'),
+			'total_no_images': Max('image_id')
+			}
+		)
 
 		return JsonResponse(
 			{
-				'total_no_images': total_no_images['id__max'],
+				'stats': stats,
 			}
 		)
 	
