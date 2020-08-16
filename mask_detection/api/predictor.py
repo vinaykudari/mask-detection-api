@@ -75,8 +75,8 @@ def get_faces_from(image):
 			faces.append(
 				{
 					'coordinates': {
-						'x1': face_coordinates[i][0],
-						'y1': face_coordinates[i][1],
+						'x1': max(face_coordinates[i][0], 0),
+						'y1': max(face_coordinates[i][1], 0),
 						'width': face_coordinates[i][2],
 						'height': face_coordinates[i][3],
 					},
