@@ -26,18 +26,14 @@ class GetStats(APIView):
 	
 class SaveFeedback(APIView):
 	def post(self, request):
-		print(request.POST)
 		image_id = request.POST.get('image_id')
 		feedback = request.POST.get('feedback')
-		
-		print(f'image_id={image_id}, feedback={feedback}')
 		
 		message = 'Thanks for your feedback!'
 		status = 'success'
 		code = 200
 		
 		if not image_id or not feedback:
-			print('Invalid POST data, Image ID and Feedback are needed')
 			return JsonResponse(
 				{
 					'failed': 'Invalid POST data, Image ID and Feedback are needed'
@@ -47,7 +43,6 @@ class SaveFeedback(APIView):
 		predicted_image_details = PredictedImageDetails.objects.filter(image_id=image_id).first()
 		
 		if not predicted_image_details:
-			print('Invalid Image ID, cannot save feedback')
 			return JsonResponse(
 				{
 					'failed': 'Invalid Image ID, cannot save feedback'
@@ -86,13 +81,11 @@ class SaveFeedback(APIView):
 					'''
 			status = 'failed'
 			code = 400
-			
-		print(status, message)
 		
 		return JsonResponse(
 			{
 				status: message
-			}, status = code
+			}, status=code
 		)
 		
 		
