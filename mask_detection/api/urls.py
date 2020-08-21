@@ -14,5 +14,7 @@ from .viewsets import MaskDetectorViewSet
 
 urlpatterns = [
     # url(r'^', include(router.urls)),
-    path('predict/', views.MaskDetectionAPI.as_view(), name='predict')
+    path('predict/', views.MaskDetectionAPI.as_view(), name='predict'),
+    path('get_stats/', views.GetStats.as_view(), name='get_stats'),
+    path('feedback/', views.SaveFeedback.as_view(), name='feedback')
 ]
