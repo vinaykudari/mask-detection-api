@@ -34,13 +34,14 @@ class SaveFeedback(APIView):
 		
 		message = 'Thanks for your feedback!'
 		status = 'success'
+		code = 200
 		
 		if not image_id or not feedback:
 			print('Invalid POST data, Image ID and Feedback are needed')
 			return JsonResponse(
 				{
 					'failed': 'Invalid POST data, Image ID and Feedback are needed'
-				}
+				}, status=400
 			)
 		
 		predicted_image_details = PredictedImageDetails.objects.filter(image_id=image_id).first()
@@ -50,7 +51,7 @@ class SaveFeedback(APIView):
 			return JsonResponse(
 				{
 					'failed': 'Invalid Image ID, cannot save feedback'
-				}
+				}, status=400
 			)
 		
 		Feedback.objects.update_or_create(
@@ -84,13 +85,14 @@ class SaveFeedback(APIView):
 						Exception = {e}
 					'''
 			status = 'failed'
+			code = 400
 			
 		print(status, message)
 		
 		return JsonResponse(
 			{
 				status: message
-			}
+			}, status = code
 		)
 		
 		
