@@ -26,6 +26,7 @@ class GetStats(APIView):
 	
 class SaveFeedback(APIView):
 	def post(self, request):
+		print(request.POST)
 		image_id = request.POST.get('image_id')
 		feedback = request.POST.get('feedback')
 		
