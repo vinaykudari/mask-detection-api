@@ -89,8 +89,8 @@ def get_faces_from(image):
 
 def is_wearing_mask(face, image):
 	height, width = image.shape[:2]
-	x1, y1 = max(face['x1'] - 20, 0), max(face['y1'] - 20, 0)
-	x2, y2 = min(face['x1'] + face['width'] + 20, width), min(face['y1'] + face['height'] + 20, height)
+	x1, y1 = max(face['x1'], 0), max(face['y1'], 0)
+	x2, y2 = min(face['x1'] + face['width'], width), min(face['y1'] + face['height'], height)
 	face_with_padding = image[y1:y2, x1:x2]
 	
 	img = Image(TRANSFORMATIONS(face_with_padding))
