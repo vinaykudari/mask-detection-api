@@ -4,6 +4,7 @@ from PIL import Image as PILImage
 import cv2
 import numpy as np
 from fastai.vision import Image
+from torch import cat
 from numpy import asarray
 from torchvision.transforms import Compose, ToPILImage, Resize, ToTensor
 from environ import Env
@@ -96,7 +97,12 @@ def is_wearing_mask(face, image):
 	img = Image(TRANSFORMATIONS(face_with_padding))
 	pred_class, pred_idx, outputs = mask_detection_learner.predict(img)
 	
-	return outputs[0].item()
+	if len(outputs) == 2:
+		outputs = [0] + outputs.tolist()
+	else:
+		outputs = outputs.tolist()
+	
+	return str(pred_class), outputs
 
 
 def analyse(image):
@@ -105,14 +111,19 @@ def analyse(image):
 	face_details = {'id': {}}
 	
 	for i in range(no_of_faces):
-		mask_confidence = is_wearing_mask(faces[i]['coordinates'], image)
-		if mask_confidence > MASK_DETECTION_THRESHOLD:
+		pred_class, (improper_mask_conf, proper_mask_conf, without_mask_conf) = is_wearing_mask(
+			faces[i]['coordinates'], image
+		)
+		if proper_mask_conf > MASK_DETECTION_THRESHOLD:
 			no_of_faces_with_mask += 1
 		
 		face_details['id'][i+1] = {
 			'face_confidence': faces[i]['confidence'],
 			'face_coordinates': faces[i]['coordinates'],
-			'mask_confidence': mask_confidence
+			'proper_mask_confidence': proper_mask_conf,
+			'improper_mask_confidence': improper_mask_conf,
+			'without_mask_confidence': proper_mask_conf,
+			'pred_class': pred_class,
 		}
 	
 	response = {
