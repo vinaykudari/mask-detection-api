@@ -53,6 +53,10 @@ class PredictedImageDetails(models.Model):
 		blank=False,
 		null=False
 	)
+	faces_with_masks_worn_improperly = models.IntegerField(
+		blank=False,
+		null=False
+	)
 	created = models.DateTimeField(auto_now_add=True)
 
 
@@ -69,5 +73,9 @@ class ActualImageDetails(models.Model):
 	faces_with_masks = models.IntegerField(
 		blank=True,
 		null=False
+	)
+	faces_with_masks_worn_improperly = models.IntegerField(
+		blank=False,
+		null=False,
 	)
 	created = models.DateTimeField(auto_now_add=True)
