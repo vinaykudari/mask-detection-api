@@ -4,7 +4,7 @@
    args: [
        'build',
        '--build-arg',
-       'DATABASE_URL=$DATABASE_URL',
+       'DATABASE_URL=$_DATABASE_URL',
        '-t',
        'gcr.io/$PROJECT_ID/mask-detection-api:$COMMIT_SHA',
        '.'
@@ -28,3 +28,7 @@
    - 'us-central1'
    - '--platform'
    - 'managed'
+substitutions:
+    _DATABASE_URL: unused
+options:
+    substitution_option: 'ALLOW_LOOSE'
