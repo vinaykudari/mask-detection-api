@@ -3,17 +3,10 @@ from PIL import Image as PILImage
 
 import cv2
 import numpy as np
-from fastai.vision import Image
 from numpy import asarray
-from torchvision.transforms import Compose, ToPILImage, Resize, ToTensor
 from environ import Env
 
 RES = 224
-TRANSFORMATIONS = Compose([
-	ToPILImage(),
-	Resize((RES, RES)),
-	ToTensor(),
-])
 
 env = Env()
 face_detection_model = settings.FACE_DETECTION_MODEL
@@ -87,10 +80,7 @@ def is_wearing_mask(face, image):
 	x1, y1 = max(face['x1'], 0), max(face['y1'], 0)
 	x2, y2 = min(face['x1'] + face['width'], width), min(face['y1'] + face['height'], height)
 	face_with_padding = image[y1:y2, x1:x2]
-	
-	img = Image(TRANSFORMATIONS(face_with_padding))
-	pred_class, pred_idx, outputs = mask_detection_learner.predict(img)
-	print(pred_class, outputs)
+	pred_class, pred_idx, outputs = mask_detection_learner.predict(face_with_padding)
 	
 	if len(outputs) == 2:
 		outputs = [0] + outputs.tolist()

@@ -23,7 +23,10 @@ services:
       - DB_PORT=5432
       - DEBUG=False
       - DATABASE_URL=postgresql://admin:admin@db:5432/postgres
-    build: .
+    build:
+      context: .
+      args:
+        - DATABASE_URL=postgresql://admin:admin@localhost:5432/postgres
     links:
       - db:db
     volumes:
