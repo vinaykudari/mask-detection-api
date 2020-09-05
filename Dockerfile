@@ -2,6 +2,8 @@
 FROM python:3.8-buster
 
 ARG DATABASE_URL
+ARG SECRET_KEY=local-secret-key
+ARG DEBUG=True
 
 LABEL maintainer=vinay.kudari30@gmail.com \
     name=MaskDetectionAPI
@@ -13,8 +15,8 @@ ENV APP_USER=admin \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DATABASE_URL=${DATABASE_URL} \
-    DEBUG=True \
-    SECRET_KEY=local-secret-key
+    DEBUG=${DEBUG} \
+    SECRET_KEY=${SECRET_KEY}
 
 RUN echo $DATABASE_URL
 
@@ -48,17 +50,17 @@ WORKDIR $APP_ROOT/mask_detection
 RUN mkdir -p uploads/models/face-detection/
 RUN mkdir -p uploads/models/mask-detection/
 
-RUN wget -O uploads/models/face-detection/yolov3-face.cfg \
+RUN wget -nc -O uploads/models/face-detection/yolov3-face.cfg \
     https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
 
-RUN wget -O uploads/models/face-detection/yolov3-face.weights \
+RUN wget -nc -O uploads/models/face-detection/yolov3-face.weights \
     https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights
 
-RUN wget -O uploads/models/mask-detection/export.pkl \
+RUN wget -nc -O uploads/models/mask-detection/export.pkl \
     https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
 
 # Run Migrations
-RUN python3 manage.py migrate --no-input
+RUN python3 manage.py migrate --no-input; exit 0
 
 RUN chown -R $APP_USER:$APP_USER $APP_ROOT
 
