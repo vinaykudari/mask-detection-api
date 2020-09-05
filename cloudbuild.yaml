@@ -10,9 +10,8 @@
        '.'
    ]
    timeout: 900s
- substitutions:
+substitutions:
    _DATABASE_URL: Sample
-
  # Push the container image to Container Registry
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'gcr.io/$PROJECT_ID/mask-detection-api:$COMMIT_SHA']
