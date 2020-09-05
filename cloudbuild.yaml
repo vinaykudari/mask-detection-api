@@ -28,3 +28,5 @@
    - 'us-central1'
    - '--platform'
    - 'managed'
+  substitutions:
+    _DATABASE_URL: Sample
