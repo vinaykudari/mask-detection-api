@@ -15,6 +15,9 @@ ENV APP_USER=admin \
     SECRET_KEY=local-secret-key
 
 RUN echo $DATABASE_URL
+RUN echo $SECRET_KEY
+RUN echo ${DATABASE_URL}
+RUN echo ${_DATABASE_URL}
 
 # Set working directory
 WORKDIR $APP_ROOT
