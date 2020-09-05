@@ -4,8 +4,7 @@
    args: [
        'build',
        '--build-arg',
-       'DATABASE_URL=$_DATABASE_URL',
-       'SECRET_KEY=$_SECRET_KEY',
+       'DATABASE_URL=$_DATABASE_URL SECRET_KEY=$_SECRET_KEY',
        '-t',
        'gcr.io/$PROJECT_ID/mask-detection-api:$COMMIT_SHA',
        '.'
