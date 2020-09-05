@@ -51,13 +51,16 @@ RUN mkdir -p uploads/models/face-detection/
 RUN mkdir -p uploads/models/mask-detection/
 
 RUN wget -nc -O uploads/models/face-detection/yolov3-face.cfg \
-    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg; \
+    exit 0
 
 RUN wget -nc -O uploads/models/face-detection/yolov3-face.weights \
-    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights
+    https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.weights; \
+    exit 0
 
 RUN wget -nc -O uploads/models/mask-detection/export.pkl \
-    https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
+    https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl; \
+    exit 0
 
 # Run Migrations
 RUN python3 manage.py migrate --no-input; exit 0
