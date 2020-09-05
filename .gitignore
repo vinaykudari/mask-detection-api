@@ -127,5 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/uploads/images/
-/models/
+
+# Ignore
+/uploads/
