@@ -28,7 +28,3 @@
    - 'us-central1'
    - '--platform'
    - 'managed'
-substitutions:
-    _DATABASE_URL: unused
-options:
-    substitution_option: 'ALLOW_LOOSE'

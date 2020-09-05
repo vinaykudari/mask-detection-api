@@ -1,6 +1,8 @@
 # Pull base image
 FROM python:3.8-buster
 
+ARG DATABASE_URL
+
 LABEL maintainer=vinay.kudari30@gmail.com \
     name=MaskDetectionAPI
 
@@ -15,9 +17,6 @@ ENV APP_USER=admin \
     SECRET_KEY=local-secret-key
 
 RUN echo $DATABASE_URL
-RUN echo $SECRET_KEY
-RUN echo ${DATABASE_URL}
-RUN echo ${_DATABASE_URL}
 
 # Set working directory
 WORKDIR $APP_ROOT
