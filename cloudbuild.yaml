@@ -3,7 +3,7 @@
  - name: 'gcr.io/cloud-builders/docker'
    args: [
        'build',
-       '--build-args',
+       '--build-arg',
        'DATABASE_URL=${_DATABASE_URL}',
        '-t',
        'gcr.io/$PROJECT_ID/mask-detection-api:$COMMIT_SHA',
