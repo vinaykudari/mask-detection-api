@@ -14,6 +14,8 @@ ENV APP_USER=admin \
     DEBUG=True \
     SECRET_KEY=local-secret-key
 
+RUN echo $DATABASE_URL
+
 # Set working directory
 WORKDIR $APP_ROOT
 
@@ -32,7 +34,7 @@ RUN apt-get update && \
 # Install dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt $APP_ROOT
-RUN pip install --default-timeout=100 -r requirements.txt
+RUN pip install --default-timeout=10000 -r requirements.txt
 
 # Copy project files
 COPY . $APP_ROOT
@@ -40,8 +42,7 @@ COPY . $APP_ROOT
 # Set working directory
 WORKDIR $APP_ROOT/mask_detection
 
-#USER $APP_USER
-
+# Download Models
 RUN mkdir -p uploads/models/face-detection/
 RUN mkdir -p uploads/models/mask-detection/
 
@@ -54,6 +55,7 @@ RUN wget -O uploads/models/face-detection/yolov3-face.weights \
 RUN wget -O uploads/models/mask-detection/export.pkl \
     https://storage.googleapis.com/maskdetection-api-files/models/mask-detection/export.pkl
 
+# Run Migrations
 RUN python3 manage.py migrate --no-input
 
 RUN chown -R $APP_USER:$APP_USER $APP_ROOT
