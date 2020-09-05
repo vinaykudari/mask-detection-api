@@ -2,11 +2,11 @@ import os
 
 import cv2
 from django.conf.global_settings import MEDIA_ROOT
-from fastai.vision import load_learner
+from fastai.learner import load_learner
 
 MASK_DETECTION_MODEL_PATH = os.path.join(
     MEDIA_ROOT,
-    'uploads/models/mask-detection/'
+    'uploads/models/mask-detection/export.pkl'
 )
 FACE_DETECTION_ARCH_PATH = os.path.join(
     MEDIA_ROOT,

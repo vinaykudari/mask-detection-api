@@ -10,7 +10,7 @@ ENV APP_USER=admin \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DATABASE_URL=postgres://admin:aHFASDSl2KFf0K4adYQiav6XeKFgIiCY@oregon-postgres.render.com/maskdb \
+    DATABASE_URL=${DATABASE_URL} \
     DEBUG=True \
     SECRET_KEY=local-secret-key
 
@@ -41,6 +41,9 @@ COPY . $APP_ROOT
 WORKDIR $APP_ROOT/mask_detection
 
 #USER $APP_USER
+
+RUN mkdir -p uploads/models/face-detection/
+RUN mkdir -p uploads/models/mask-detection/
 
 RUN wget -O uploads/models/face-detection/yolov3-face.cfg \
     https://storage.googleapis.com/maskdetection-api-files/models/face-detection/yolov3-face.cfg
