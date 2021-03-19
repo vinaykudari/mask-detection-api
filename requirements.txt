@@ -8,7 +8,7 @@ dj-database-url==0.5.0
 Django==3.0.8
 django-storages==1.9.1
 django-cors-headers==3.4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 django-environ==0.4.5
 fastai==2.0.8
 fastprogress==0.2.4
