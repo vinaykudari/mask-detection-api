@@ -17,7 +17,7 @@ google-cloud-storage==1.30.0
 gunicorn[gevent]==20.0.4
 idna==2.10
 ipykernel==5.1.2
-ipython==7.8.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 ipywidgets==7.5.1
 kiwisolver==1.2.0
