@@ -23,7 +23,7 @@ ipywidgets==7.5.1
 kiwisolver==1.2.0
 matplotlib==3.3.0
 numexpr==2.7.1
-numpy==1.19.1
+numpy==1.22.0
 opencv-python-inference-engine==4.4.0
 packaging==20.4
 pandas==1.1.0
